@@ -19,6 +19,9 @@ def dispose1file(fn: str, only1=False):
         printError('file not exists', atlasName)
         return
 
+    print('====')
+    print(atlasName)
+
     if not path.exists(fn):
         os.makedirs(fn)
 
