@@ -19,9 +19,8 @@ def dispose1file(fn: str, only1=False):
         printError('file not exists', atlasName)
         return
 
-    if path.isdir(fn):
-        shutil.rmtree(fn, True)  # 如果有该目录,删除
-    os.makedirs(fn)
+    if not path.exists(fn):
+        os.makedirs(fn)
 
     content = None
     with open(atlasName, encoding='utf-8') as f:
