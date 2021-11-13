@@ -44,6 +44,8 @@ def dispose1file(fn: str, only1=False):
         tn += 1
         print(k)
         frame = frames[k]["frame"]
+        sourceSize = frames[k]["sourceSize"]
+        spriteSourceSize = frames[k]["spriteSourceSize"]
         idx = frame['idx']
         width = frame["w"]
         height = frame["h"]
@@ -53,12 +55,12 @@ def dispose1file(fn: str, only1=False):
         rby = lty+height
         result_image = None
         if k.endswith('.png'):
-            result_image = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+            result_image = Image.new("RGBA", (sourceSize["w"], sourceSize["h"]), (0, 0, 0, 0))
         else:
-            result_image = Image.new("RGB", (width, height), (0, 0, 0, 0))
+            result_image = Image.new("RGB", (sourceSize["w"], sourceSize["h"]), (0, 0, 0, 0))
         im = big_images[idx]
         rect_on_big = im.crop((ltx, lty, rbx, rby))
-        result_image.paste(rect_on_big, (0, 0, width, height))
+        result_image.paste(rect_on_big, (spriteSourceSize["x"], spriteSourceSize["y"]))       
         result_image.save(fn+'/'+k)
     print('----')
     print('image num:', tn)
